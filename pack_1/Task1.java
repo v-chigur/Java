@@ -9,14 +9,27 @@ public class Task1 {
 		Scanner scan = new Scanner(fr);
 
 		Map<String, LinkedList<Integer>> mp = new LinkedHashMap<>();
-		String word;
 		LinkedList<Integer> lst;
 		int i = 0, n;
 
 		while (scan.hasNext())
 		{
+			String w = scan.next().toLowerCase();
+			int k = 0;
+			String word = "";
+			while (k < w.length()) 
+			{
+				char sm = w.charAt(k);
+				if (Character.isLetter(sm) 
+					|| sm == '-' || sm == '\'')
+				{
+					word += sm;
+				}
+				++k;
+			}
+			if (word == "") continue;
+			
 			++i;
-			word = scan.next().toLowerCase();
 			if (mp.containsKey(word))
 			{
 				lst = mp.get(word);
@@ -47,7 +60,10 @@ public class Task1 {
         	{
         		fw.write(" " + itr.next());
         	}
-        	fw.write("\n");
+        	if (iter.hasNext())
+        	{
+        		fw.write("\n");
+        	}
 		}
 
 		fr.close();
